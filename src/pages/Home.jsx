@@ -17,6 +17,7 @@ export default function Home() {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [postToDelete, setPostToDelete] = useState(null);
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     const storedUserId = localStorage.getItem('user_id');
@@ -29,7 +30,7 @@ export default function Home() {
   async function fetchBlogPosts(userId) {
     setLoading(true);
     try {
-      const response = await axios.get('https://blog-app-api-alpha-seven.vercel.app/blogs', { 
+      const response = await axios.get('https://blog-app-api-alpha-seven.vercel.app/posts', { 
         params: { user_id: userId },
       });
       setPosts(response.data);
@@ -45,11 +46,17 @@ export default function Home() {
     setLoadingSubmit(true);
 
     try {
-      const response = await axios.patch(`https://blog-app-api-alpha-seven.vercel.app/blogs/${currentPostId}`, {
-        title,
-        content,
-        user_id: userId
-      });
+      const response = await axios.patch(`https://blog-app-api-alpha-seven.vercel.app/posts/${currentPostId}`, 
+        { 
+          title, 
+          content 
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        }
+      );
       setLoadingSubmit(false);
       setShowEditModal(false);
       fetchBlogPosts(userId)
@@ -64,7 +71,11 @@ export default function Home() {
 
   async function deleteBlogPost(postId) {
     try {
-      const response = await axios.delete(`https://blog-app-api-alpha-seven.vercel.app/blogs/${postId}`);
+      const response = await axios.delete(`https://blog-app-api-alpha-seven.vercel.app/posts/${postId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setShowDeleteModal(false);
       setPosts(posts.filter((post) => post.id !== postId));
     } catch (error) {
@@ -108,7 +119,7 @@ export default function Home() {
                   {post.content}
                 </Card.Text>
                 <div className="d-flex justify-content-between align-items-center">
-                  <Card.Link href={`/blogs/${post.id}`}>Read more</Card.Link>
+                  <Card.Link href={`/posts/${post.id}`}>Read more</Card.Link>
                   <div className="d-flex">
                     <Button variant="dark" onClick={() => handleEdit(post)}>
                       <i className="bi bi-pencil-fill"></i>

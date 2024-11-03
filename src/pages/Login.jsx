@@ -18,11 +18,11 @@ export default function Login() {
     setSuccess(false);
 
     try {
-      const response = await axios.post('https://blog-app-api-alpha-seven.vercel.app/login', { email, password });
+      const response = await axios.post('https://blog-app-api-alpha-seven.vercel.app/auth/login', { email, password });
       const { user, token } = response.data;
       localStorage.setItem('user_id', user.id);
       localStorage.setItem('token', token);
-      navigate('/blogs');
+      navigate('/posts');
     } catch (error) {
       setShowModal(true);
       console.error('Error during login:', error);

@@ -14,7 +14,7 @@ export default function ViewBlog() {
     async function fetchBlogPost() {
       setLoading(true);
       try {
-        const response = await axios.get(`https://blog-app-api-alpha-seven.vercel.app/blogs/${id}`);
+        const response = await axios.get(`https://blog-app-api-alpha-seven.vercel.app/posts/${id}`);
         setPost(response.data);
       } catch (error) {
         console.error('Error during retrieval:', error);

@@ -17,7 +17,7 @@ function AppNavbar() {
     if (!isLoggedIn && location.pathname !== '/login' && location.pathname !== '/signup') {
       navigate('/login');
     } else if (isLoggedIn && (location.pathname === '/login' || location.pathname === '/signup')) {
-      navigate('/blogs');
+      navigate('/posts');
     }
   }, [navigate, location.pathname]);
 
@@ -31,12 +31,12 @@ function AppNavbar() {
   return (
     <Navbar bg="dark" variant="dark" expand="lg" fixed="top" className="mb-3">
       <Container>
-        <Navbar.Brand as={Link} to="/blogs">Minimalist.blog</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/posts">Minimalist.blog</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             {isAuthenticated && (
-              <Nav.Link as={Link} to="/blogs/add">Add Blog Post</Nav.Link>
+              <Nav.Link as={Link} to="/posts/add">Add Blog Post</Nav.Link>
             )}
           </Nav>
           <Nav>

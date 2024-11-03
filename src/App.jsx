@@ -2,8 +2,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
 import Home from './pages/Home'
-import AddBlog from './pages/AddBlog'
-import ViewBlog from './pages/ViewBlog'
+import AddPost from './pages/AddPost'
+import ViewPost from './pages/ViewPost'
 import Navbar from './components/Navbar'
 import './App.css'
 
@@ -15,9 +15,9 @@ function App() {
         <Route index path="/" element={<Login/>} />
         <Route path="signup" element={<Signup/>} />
         <Route path="login" element={<Login/>} />
-        <Route path="blogs" element={<Home/>} />
-        <Route path="blogs/add" element={<AddBlog/>} />
-        <Route path="blogs/:id" element={<ViewBlog/>} />
+        <Route path="posts" element={<Home/>} />
+        <Route path="posts/add" element={<AddPost/>} />
+        <Route path="posts/:id" element={<ViewPost/>} />
       </Routes>
     </BrowserRouter>
   )

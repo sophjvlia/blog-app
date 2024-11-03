@@ -16,7 +16,7 @@ export default function Signup() {
     setSuccess(false);
 
     try {
-      const response = await axios.post('https://blog-app-api-alpha-seven.vercel.app/signup', { email, password });
+      const response = await axios.post('https://blog-app-api-alpha-seven.vercel.app/auth/signup', { email, password });
       setSuccess(true); 
       setShowModal(true);
       setEmail('');

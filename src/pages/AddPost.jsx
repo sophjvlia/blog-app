@@ -1,5 +1,5 @@
 import { Container, Form, Button, FloatingLabel, Modal, Spinner } from 'react-bootstrap'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 import '../App.css'
 
@@ -9,14 +9,8 @@ export default function AddBlog() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [userId, setUserId] = useState(null);
-
-  useEffect(() => {
-    const storedUserId = localStorage.getItem('user_id');
-    if (storedUserId) {
-      setUserId(storedUserId);
-    }
-  }, []);
+  const token = localStorage.getItem('token');
+  console.log(token);
 
   async function handleAddBlog(e) {
     e.preventDefault();
@@ -24,7 +18,17 @@ export default function AddBlog() {
     setSuccess(false);
 
     try {
-      const response = await axios.post('https://blog-app-api-alpha-seven.vercel.app/blogs', { title, content, user_id: userId });
+      const response = await axios.post('https://blog-app-api-alpha-seven.vercel.app/posts', 
+        { 
+          title, 
+          content 
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        }
+      );
       setSuccess(true); 
       setShowModal(true);
       setTitle('');
