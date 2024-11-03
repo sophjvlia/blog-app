@@ -1,6 +1,6 @@
 import { Container, Form, FloatingLabel, Button, Modal, Spinner } from 'react-bootstrap'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 import '../App.css'
 
@@ -54,7 +54,7 @@ export default function Login() {
             {loading ? <Spinner animation="border" size="sm" /> : 'Log In'}
           </Button>
 
-          <p className="text-white mt-2">Don't have an account? <a href="/signup">Sign up here</a></p>
+          <p className="text-white mt-2">Don't have an account? <Link to="/signup">Sign up here</Link></p>
         </Form>
       </div>
 
