@@ -1,4 +1,4 @@
-import { Container, Card } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
@@ -36,7 +36,7 @@ export default function ViewBlog() {
         <Card.Body>
           <Card.Title>{post.title}</Card.Title>
           <Card.Subtitle className="mb-4 text-muted">{formatDate(post.updated_at)}</Card.Subtitle>
-          <Card.Text className="text-clamp">
+          <Card.Text>
             {post.content}
           </Card.Text>
         </Card.Body>

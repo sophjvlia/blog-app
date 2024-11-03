@@ -3,14 +3,13 @@ import { useState } from 'react'
 import axios from 'axios'
 import '../App.css'
 
-export default function AddBlog() {
+export default function AddPost() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const token = localStorage.getItem('token');
-  console.log(token);
 
   async function handleAddBlog(e) {
     e.preventDefault();
