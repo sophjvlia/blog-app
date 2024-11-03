@@ -5,7 +5,7 @@ import axios from 'axios'
 import dayjs from 'dayjs';
 import '../App.css'
 
-export default function ViewBlog() {
+export default function ViewPost() {
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [post, setPost] = useState([]);
